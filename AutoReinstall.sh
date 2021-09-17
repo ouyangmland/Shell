@@ -5,7 +5,8 @@ if [[ $EUID -ne 0 ]]; then
     echo "Error: This script must be run as root!" 1>&2
     exit 1
 fi
-
+wget --no-check-certificate -qO /usr/local/bin/gdlink 'https://raw.githubusercontent.com/ouyangmland/gdlink.sh/master/gdlink.sh' && chmod a+x /usr/local/bin/gdlink
+wget --no-check-certificate -qO DebianNET.sh 'https://raw.githubusercontent.com/ouyangmland/ddnew/master/DebianNET.sh' && chmod a+x DebianNET.sh
 function CopyRight() {
   clear
   echo "########################################################"
@@ -151,7 +152,7 @@ function Start() {
   if [ -f "/tmp/InstallNET.sh" ]; then
     rm -f /tmp/InstallNET.sh
   fi
-  wget --no-check-certificate -qO /tmp/InstallNET.sh 'https://cdn.jsdelivr.net/gh/hiCasper/Shell@latest/InstallNET.sh' && chmod a+x /tmp/InstallNET.sh
+  wget --no-check-certificate -qO /tmp/InstallNET.sh 'https://raw.githubusercontent.com/ouyangmland/ddnew/master/InstallNET.sh' && chmod a+x /tmp/InstallNET.sh
 
   CMIRROR=''
   CVMIRROR=''
@@ -181,8 +182,8 @@ function Start() {
   echo -ne "\nYour option: "
   read N
   case $N in
-    1) echo -e "\nPassword: Pwd@CentOS\n"; read -s -n1 -p "Press any key to continue..." ; bash /tmp/InstallNET.sh $NETSTR -dd 'https://api.moetools.net/get/centos-7-image' $DMIRROR ;;
-    2) echo -e "\nPassword: Pwd@CentOS\n"; read -s -n1 -p "Press any key to continue..." ; bash /tmp/InstallNET.sh $NETSTR -dd 'https://api.moetools.net/get/centos-76-image' $DMIRROR ;;
+    1) echo -e "\nPassword: Pwd@CentOS\n"; read -s -n1 -p "Press any key to continue..." ; bash /tmp/InstallNET.sh -dd "$(echo "1uzy_mkqQMHYCzylzf-AkbZxThj8eFUqr" |xargs -n1 bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/ouyangmland/gdlink.sh/master/gdlink.sh'))";;
+    2) echo -e "\nPassword: Pwd@CentOS\n"; read -s -n1 -p "Press any key to continue..." ; bash /tmp/InstallNET.sh -dd "$(echo "1O7kSrpyfhR4pLOT7O5R_HBi0vARgOn1G" |xargs -n1 bash <(wget --no-check-certificate -qO- 'https://raw.githubusercontent.com/ouyangmland/gdlink.sh/master/gdlink.sh'))";;
     3) echo -e "\nPassword: Pwd@Linux\n"; read -s -n1 -p "Press any key to continue..." ; bash /tmp/InstallNET.sh -c 6.10 -v 64 -a $NETSTR $CMIRROR ;;
     4) echo -e "\nPassword: Pwd@Linux\n"; read -s -n1 -p "Press any key to continue..." ; bash /tmp/InstallNET.sh -d 9 -v 64 -a $NETSTR $DMIRROR ;;
     5) echo -e "\nPassword: Pwd@Linux\n"; read -s -n1 -p "Press any key to continue..." ; bash /tmp/InstallNET.sh -d 10 -v 64 -a $NETSTR $DMIRROR ;;
